@@ -11,6 +11,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"unicode"
 
@@ -40,6 +41,32 @@ const (
 var state_end_tokens []string = []string{
 	"<?",
 	"?>",
+}
+
+// parseAndAddFirstParameter parses a Go function declaration and adds a first parameter to it
+func parseAndAddFirstParameter(funcDecl, funcName, newParam string) (string, error) {
+	// Simplified regular expression to match a Go function declaration
+	re := regexp.MustCompile(`^(\(.*\))\s+\(([^)]*)\)(.*)$`)
+	matches := re.FindStringSubmatch(funcDecl)
+	if matches == nil {
+		return "", fmt.Errorf("invalid function declaration")
+	}
+
+	// Extract the parameter part of the function declaration
+	prefix := matches[1]
+	params := matches[2]
+	postfix := matches[3]
+
+	// Add the new parameter to the beginning of the parameter list
+	if params == "" {
+		params = newParam
+	} else {
+		params = newParam + ", " + params
+	}
+
+	// Reconstruct the function declaration
+	newFuncDecl := re.ReplaceAllString(funcDecl, fmt.Sprintf("%s %s(%s)%s", prefix, funcName, params, postfix))
+	return newFuncDecl, nil
 }
 
 func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
@@ -176,6 +203,28 @@ func process_file(filePath string) bytes.Buffer {
 					}
 					prefix += string(ch)
 				}
+
+				if prefix == "go" {
+					ni := strings.Index(str, "\n")
+					funcDecl := str
+					if ni != -1 {
+						funcDecl = str[:ni]
+					}
+
+					_ = funcDecl
+					/*
+						funcDecl, err = parseAndAddFirstParameter(funcDecl, "wr io.Writer")
+						if err != nil {
+							// write code to get file name from filePath
+							fileName := filepath.Base(filePath)
+							tokens := strings.Split(fileName, ".")
+							packageName := tokens[0]
+
+						}
+					*/
+
+				}
+
 				firstStreamToken = false
 			}
 			if strings.HasPrefix(str, "=") {
