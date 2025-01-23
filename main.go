@@ -170,14 +170,14 @@ func process_file(filePath string) bytes.Buffer {
 		case StateStream:
 			if len(str) != 0 {
 				if consumeNewLine {
-					if str[0] == '\n' {
+					if len(str) > 1 && str[0] == '\n' {
 						str = str[1:]
-						if str[0] == '\r' {
+						if len(str) > 1 && str[0] == '\r' {
 							str = str[1:]
 						}
-					} else if str[0] == '\r' {
+					} else if len(str) > 1 && str[0] == '\r' {
 						str = str[1:]
-						if str[0] == '\n' {
+						if len(str) > 1 && str[0] == '\n' {
 							str = str[1:]
 						}
 					}
