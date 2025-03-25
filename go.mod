@@ -5,7 +5,7 @@ go 1.24
 replace github.com/igadmg/goex => ../../pkg/goex
 
 require (
-	github.com/igadmg/goex v0.0.0-20250226161117-f8fd602fe0c7
+	github.com/igadmg/goex v0.0.0-20250321131421-ccb743b21181
 	github.com/stretchr/testify v1.10.0
 )
 
