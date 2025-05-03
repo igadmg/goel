@@ -1,6 +1,6 @@
 module github.com/igadmg/goel
 
-go 1.24
+go 1.24.2
 
 require (
 	github.com/igadmg/goex v0.0.0-20250502115452-bd40b01ba4eb
