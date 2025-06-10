@@ -13,13 +13,15 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"time"
 	"unicode"
 
 	"github.com/igadmg/goex/gx"
 )
 
 var (
-	path_f = flag.String("path", "", "worikning dir")
+	path_f     = flag.String("path", "", "worikning dir")
+	appModTime time.Time
 )
 
 func Usage() {
@@ -137,7 +139,12 @@ func read_files(dir string) (err error) {
 		outputFilePath := filepath.Join(dir, strings.TrimSuffix(f.Name(), ".el"))
 		if ofs, err := os.Stat(outputFilePath); !errors.Is(err, os.ErrNotExist) {
 			fs, _ := os.Stat(filePath)
-			if ofs.ModTime().Compare(fs.ModTime()) > 0 {
+			fileModTime := fs.ModTime()
+			if fileModTime.Compare(appModTime) < 0 {
+				fileModTime = appModTime
+			}
+
+			if ofs.ModTime().Compare(fileModTime) > 0 {
 				continue
 			}
 		}
@@ -254,8 +261,18 @@ func main() {
 	flag.Usage = Usage
 	flag.Parse()
 
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	pfs, err := os.Stat(ex)
+	if err != nil {
+		panic(err)
+	}
+	appModTime = pfs.ModTime()
+
 	dir := "."
-	err := read_files(dir)
+	err = read_files(dir)
 	if err != nil {
 		panic(err)
 	}
