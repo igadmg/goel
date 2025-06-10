@@ -135,6 +135,13 @@ func read_files(dir string) (err error) {
 		buffer := process_file(filePath)
 
 		outputFilePath := filepath.Join(dir, strings.TrimSuffix(f.Name(), ".el"))
+		if ofs, err := os.Stat(outputFilePath); !errors.Is(err, os.ErrNotExist) {
+			fs, _ := os.Stat(filePath)
+			if ofs.ModTime().Compare(fs.ModTime()) > 0 {
+				continue
+			}
+		}
+
 		outputFile := gx.Must(os.Create(outputFilePath))
 		defer outputFile.Close()
 
