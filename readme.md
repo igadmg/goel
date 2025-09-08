@@ -150,3 +150,10 @@ func HelloTemplate(wr io.Writer) {
 ```
 
 Running the el tool will generate a Go file `greeting.go` that have a function `HelloTemplate` that can be used to render the template.
+
+
+### Tags
+
+<? ?> - defines simple embedding of code into text template
+<?= var ?> - define template code to output var into template
+<?^= var ?> - define template code to output var into template with first letter converted to Title case
