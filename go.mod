@@ -3,8 +3,8 @@ module github.com/igadmg/goel
 go 1.24.2
 
 require (
-	github.com/igadmg/goex v0.0.0-20250610111548-2e0e7d368962
-	github.com/stretchr/testify v1.10.0
+	github.com/igadmg/goex v0.0.0-20250911170851-154852de9e5b
+	github.com/stretchr/testify v1.11.1
 )
 
 require (
