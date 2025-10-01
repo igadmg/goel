@@ -169,10 +169,14 @@ func process_file(filePath string) bytes.Buffer {
 	file := gx.Must(os.Open(filePath))
 	defer file.Close()
 
-	reader := bufio.NewReader(file)
+	return process_buffer(bufio.NewReader(file))
+}
+
+func process_buffer(reader *bufio.Reader) bytes.Buffer {
 	buffer := bytes.Buffer{}
 	consumeNewLine = true
 	firstStreamToken = true
+	state = StateStream
 
 	for {
 		str, err := ReadStringToken(reader, state_end_tokens[state])
