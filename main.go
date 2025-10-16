@@ -71,6 +71,33 @@ func parseAndAddFirstParameter(funcDecl, funcName, newParam string) (string, err
 	return newFuncDecl, nil
 }
 
+/*
+// AI fixed version of ReadStringToken
+// let's wait for next template problem so we can test it better
+
+func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
+	var buf []byte
+	bt := []byte(token)
+	for {
+		var bb byte
+		bb, err = b.ReadByte()
+		if err != nil {
+			if len(buf) > 0 {
+				err = nil
+			}
+			r = string(buf)
+			return
+		}
+		buf = append(buf, bb)
+		if len(buf) >= len(bt) && bytes.Equal(buf[len(buf)-len(bt):], bt) {
+			buf = buf[:len(buf)-len(bt)]
+			r = string(buf)
+			return
+		}
+	}
+}
+*/
+
 func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
 	bt := []byte(token)
 	var br []byte
@@ -85,6 +112,7 @@ func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
 			return
 		}
 		if err != nil {
+			fmt.Printf("error occured %v", err)
 			return
 		}
 
@@ -100,6 +128,7 @@ func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
 				return
 			}
 			if err != nil {
+				fmt.Printf("error occured %v", err)
 				return
 			}
 			if !bytes.Equal(tok, bt[1:]) {

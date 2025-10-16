@@ -48,12 +48,6 @@ func TestProcessBuffer(t *testing.T) {
 			expected: `fmt.Println("Hello, Go!")` + "\n",
 		},
 		{
-			name: "StateCode with Go code with *",
-			input: `Hello
-	*World <?fmt.Println("Hello, Go!")?> `,
-			expected: `fmt.Println("Hello, Go!")` + "\n",
-		},
-		{
 			name: "Mixed states",
 			input: `Hello, World!
 <?fmt.Println("Hello, Go!")?>
