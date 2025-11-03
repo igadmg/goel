@@ -69,15 +69,13 @@ Goodbye, World!`,
 	}
 
 	for _, tc := range tests {
-		t.Run(tc.name, func(t *testing.T) {
-			// Arrange
-			reader := bufio.NewReader(strings.NewReader(tc.input))
+		// Arrange
+		reader := bufio.NewReader(strings.NewReader(tc.input))
 
-			// Act
-			output := process_buffer(reader)
+		// Act
+		output := process_buffer(reader)
 
-			// Assert
-			assert.Equal(t, tc.expected, output.String())
-		})
+		// Assert
+		assert.Equal(t, tc.expected, output.String())
 	}
 }
