@@ -3,7 +3,7 @@ module github.com/igadmg/goel
 go 1.25
 
 require (
-	github.com/igadmg/goex v0.0.0-20250912082322-832a32ad1931
+	github.com/igadmg/goex v0.0.0-20251119122220-1ac1daca15d5
 	github.com/stretchr/testify v1.11.1
 )
 
