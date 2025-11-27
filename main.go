@@ -7,7 +7,6 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
-	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -71,10 +70,9 @@ func parseAndAddFirstParameter(funcDecl, funcName, newParam string) (string, err
 	return newFuncDecl, nil
 }
 
-/*
 // AI fixed version of ReadStringToken
 // let's wait for next template problem so we can test it better
-
+// NOTE: found such case. AI version works better.
 func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
 	var buf []byte
 	bt := []byte(token)
@@ -96,30 +94,14 @@ func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
 		}
 	}
 }
-*/
 
-func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
-	bt := []byte(token)
-	var br []byte
+/*
+	func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
+		bt := []byte(token)
+		var br []byte
 
-	for {
-		br, err = b.ReadSlice(token[0])
-		if errors.Is(err, io.EOF) {
-			r += string(br)
-			if len(r) > 0 {
-				err = nil
-			}
-			return
-		}
-		if err != nil {
-			fmt.Printf("error occured %v", err)
-			return
-		}
-
-		var tok []byte
-		tl := len(token) - 1
-		if tl > 0 {
-			tok, err = b.Peek(tl)
+		for {
+			br, err = b.ReadSlice(token[0])
 			if errors.Is(err, io.EOF) {
 				r += string(br)
 				if len(r) > 0 {
@@ -131,19 +113,35 @@ func ReadStringToken(b *bufio.Reader, token string) (r string, err error) {
 				fmt.Printf("error occured %v", err)
 				return
 			}
-			if !bytes.Equal(tok, bt[1:]) {
-				br = append(br, gx.Must(b.ReadByte()))
-				r += string(br)
-				continue
+
+			var tok []byte
+			tl := len(token) - 1
+			if tl > 0 {
+				tok, err = b.Peek(tl)
+				if errors.Is(err, io.EOF) {
+					r += string(br)
+					if len(r) > 0 {
+						err = nil
+					}
+					return
+				}
+				if err != nil {
+					fmt.Printf("error occured %v", err)
+					return
+				}
+				if !bytes.Equal(tok, bt[1:]) {
+					br = append(br, gx.Must(b.ReadByte()))
+					r += string(br)
+					continue
+				}
 			}
+
+			b.Discard(tl)
+			r += string(br[:len(br)-1])
+			return
 		}
-
-		b.Discard(tl)
-		r += string(br[:len(br)-1])
-		return
 	}
-}
-
+*/
 func read_files(dir string) (err error) {
 	files, err := os.ReadDir(dir)
 	if err != nil {
