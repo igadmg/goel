@@ -3,6 +3,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/igadmg/goex v0.0.0-20260201172011-1108af2793e7 h1:VxjhZwrFc5ima6eKN90amKwHmb5EcWRQnEztl6b0mEo=
 github.com/igadmg/goex v0.0.0-20260201172011-1108af2793e7/go.mod h1:mUm68QJdmQboEFcwLgEpLcrA6D0EPSLfTWuByuaWxs8=
+github.com/igadmg/goex v0.0.0-20260207091515-91213be8da02 h1:LGmzvggeWDTz4eVwJDKF25JuwnIV8GnhhGiTi/KpZYg=
+github.com/igadmg/goex v0.0.0-20260207091515-91213be8da02/go.mod h1:mUm68QJdmQboEFcwLgEpLcrA6D0EPSLfTWuByuaWxs8=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
