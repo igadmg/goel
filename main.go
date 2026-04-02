@@ -276,6 +276,12 @@ func process_buffer(reader *bufio.Reader) bytes.Buffer {
 				buffer.WriteString("wr.Write([]byte(cases.Title(language.English, cases.NoLower).String(fmt.Sprintf(\"%v\", ")
 				buffer.WriteString(str[2:])
 				buffer.WriteString("))))\n")
+			} else if strings.HasPrefix(str, "\"=") {
+				buffer.WriteString("wr.Write([]byte(fmt.Sprintf(\"%v\", ")
+				buffer.WriteString("\"\\\"\" + strings.Join(")
+				buffer.WriteString(str[2:])
+				buffer.WriteString(", \"\\\", \\\"\") + \"\\\"\"")
+				buffer.WriteString(")))\n")
 			} else if strings.HasPrefix(str, "=") {
 				buffer.WriteString("wr.Write([]byte(fmt.Sprintf(\"%v\", ")
 				buffer.WriteString(str[1:])
