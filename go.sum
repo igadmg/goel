@@ -1,5 +1,5 @@
-github.com/Mishka-Squat/goex v0.0.0-20260312232603-01345e9ec059 h1:PGSR+wlbVsmEnqdA4wf8KGHcPT6snD4s0xpETDJ0YbI=
-github.com/Mishka-Squat/goex v0.0.0-20260312232603-01345e9ec059/go.mod h1:Dk3vpmr4MNcPG9oam9XOV28udaLYUeUNyMkqKENchF0=
+github.com/Mishka-Squat/goex v0.0.0-20260410140447-afaf9800e846 h1:YzklFIOzET0gCLedlMOJdc3fnzpmOOnTsuG7++EoVDg=
+github.com/Mishka-Squat/goex v0.0.0-20260410140447-afaf9800e846/go.mod h1:6S8pDMEP6L0FLSDTjtDumRaVPJQSkft/hfeW8lZlaLU=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
