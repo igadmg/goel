@@ -3,7 +3,7 @@ module github.com/Mishka-Squat/goel
 go 1.26
 
 require (
-	github.com/Mishka-Squat/goex v0.1.0
+	github.com/Mishka-Squat/goex v0.1.1
 	github.com/stretchr/testify v1.11.1
 )
 
